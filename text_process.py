@@ -17,7 +17,31 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # Instruction to add at the top of the file
-INSTRUCTION = """Here is a list of news regarding stocks. Analyze all without missing any and find the best and worst news that can move stock prices."""
+INSTRUCTION = """
+You will receive a stream of news items related to publicly traded companies. 
+1. **Scan comprehensively**—do not miss any headline.
+2. **Identify and prioritize** only those items with clear positive OR negative impact potential on share price; discard irrelevant fluff.
+3. **Focus specifically** on these event types (but stay alert for other impactful news):
+   - Mergers & Acquisitions (acquisition talks, takeover bids, joint-ventures)
+   - Major Deals & Partnerships (contracts, supply agreements, strategic alliances)
+   - Legal & Regulatory Actions (court rulings, lawsuits, fines, government investigations)
+   - Capital Moves (fundraising rounds, debt issuances, equity offerings, share buybacks, dividends)
+   - Project Launches & Infrastructure (new plant builds, R&D programs, technology roll-outs, site openings)
+   - Management & Governance (CEO/CFO changes, board reshuffles, executive departures)
+   - Product Milestones (FDA approvals, patent grants, major product launches)
+   - Analyst Ratings & Brokerage Actions (upgrades, downgrades, new coverage, price-target revisions)
+   - Earnings & Guidance (quarterly results, forward-looking guidance changes)
+   - Insider & Shareholder Moves (insider buys/sells, block trades, activist stakes)
+   - Sector & Macro Indicators (key economic data, industry outlook reports)
+4. **For each impactful item**, indicate:
+   - **Type** (e.g., “M&A,” “Rating Upgrade,” “Lawsuit,” “Funding”)
+   - **Sentiment** (positive or negative)
+   - **Rationale** (why it will likely drive the stock)
+   - **Severity** (e.g., “high,” “moderate,” “low” impact)
+5. **Ignore** any news that doesn’t clearly fit a market-moving category.
+
+Return a ranked list: highest-impact positive stories first, highest-impact negative stories last.
+"""
 
 def process_news_file():
     """
