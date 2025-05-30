@@ -56,8 +56,7 @@ def fetch_news_for_company(company_name, symbol):
                 #print(f"Link: {entry.link}")
                # print(f"Published: {entry.published}")
                # print("-" * 50)
-        else:
-            print(f"No news found for {company_name} ({symbol}) in the last 3 hours.")
+
 
         return titles
     except Exception as e:
